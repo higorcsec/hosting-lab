@@ -1,0 +1,204 @@
+# SSL e HTTPS
+
+Atualmente, praticamente todos os sites utilizam **HTTPS** para proteger a comunicação entre o navegador e o servidor.
+
+Essa proteção é realizada através de um **certificado SSL/TLS**, que criptografa os dados transmitidos.
+
+---
+
+# O que é SSL?
+
+SSL (**Secure Sockets Layer**) foi o primeiro protocolo criado para criptografar conexões na internet.
+
+Hoje ele foi substituído pelo **TLS (Transport Layer Security)**, porém o termo **SSL** continua sendo utilizado no mercado.
+
+Na prática, quando falamos em certificado SSL, normalmente estamos nos referindo a um certificado TLS.
+
+---
+
+# O que é HTTPS?
+
+HTTPS significa:
+
+```
+HyperText Transfer Protocol Secure
+```
+
+Ele é a versão segura do protocolo HTTP.
+
+Enquanto o HTTP envia informações em texto simples, o HTTPS utiliza criptografia para proteger os dados durante a comunicação.
+
+---
+
+# Como funciona?
+
+Quando um usuário acessa um site HTTPS, ocorre o seguinte processo:
+
+```text
+Usuário
+      │
+      ▼
+https://meusite.com
+      │
+      ▼
+Servidor apresenta
+o certificado SSL
+      │
+      ▼
+O navegador valida
+o certificado
+      │
+      ▼
+Conexão criptografada
+é estabelecida
+      │
+      ▼
+Site carregado com segurança
+```
+
+Todo esse processo acontece em poucos milissegundos.
+
+---
+
+# Benefícios do HTTPS
+
+- Criptografa os dados enviados.
+- Protege senhas e informações sensíveis.
+- Evita interceptação da comunicação.
+- Aumenta a confiança dos usuários.
+- É recomendado pelos mecanismos de busca, como o Google.
+
+---
+
+# O que é um certificado digital?
+
+O certificado digital comprova a identidade do servidor.
+
+Ele contém informações como:
+
+- Nome do domínio
+- Empresa emissora
+- Data de validade
+- Chave pública utilizada na criptografia
+
+Quando o navegador reconhece um certificado válido, ele exibe o cadeado ao lado da URL.
+
+```
+🔒 https://meusite.com
+```
+
+---
+
+# Let's Encrypt
+
+O **Let's Encrypt** é uma autoridade certificadora gratuita.
+
+Ele permite emitir certificados SSL válidos sem custo.
+
+Atualmente é uma das soluções mais utilizadas para sites, APIs e servidores Linux.
+
+Principais vantagens:
+
+- Gratuito
+- Renovação automática
+- Compatível com praticamente todos os navegadores
+- Fácil integração com Apache e Nginx
+
+---
+
+# Certbot
+
+O **Certbot** é uma ferramenta utilizada para emitir e renovar certificados do Let's Encrypt.
+
+Além da emissão, ele pode configurar automaticamente servidores web como Apache e Nginx.
+
+Exemplo de instalação em servidores Linux:
+
+```
+sudo apt install certbot
+```
+
+Exemplo para Nginx:
+
+```
+sudo certbot --nginx
+```
+
+Exemplo para Apache:
+
+```
+sudo certbot --apache
+```
+
+> Os comandos acima normalmente exigem privilégios administrativos.
+
+---
+
+# Redirecionamento HTTP → HTTPS
+
+Mesmo após instalar um certificado, ainda é comum que usuários acessem o site utilizando HTTP.
+
+Para evitar conexões inseguras, é recomendado redirecionar automaticamente todas as requisições para HTTPS.
+
+Fluxo:
+
+```
+http://meusite.com
+        │
+        ▼
+Redirecionamento (301)
+        │
+        ▼
+https://meusite.com
+```
+
+Dessa forma, todo acesso será realizado utilizando uma conexão segura.
+
+---
+
+# Certificado expirado
+
+Os certificados possuem prazo de validade.
+
+Quando expiram, o navegador exibe um aviso semelhante a:
+
+```
+Sua conexão não é particular.
+```
+
+Por isso é importante configurar a renovação automática dos certificados.
+
+---
+
+# Como verificar um certificado?
+
+A maioria dos navegadores permite visualizar as informações do certificado.
+
+Basta clicar no ícone do cadeado ao lado da URL.
+
+Será possível verificar:
+
+- Emissor
+- Domínio protegido
+- Data de validade
+- Tipo de criptografia
+
+---
+
+# Boas práticas
+
+- Sempre utilizar HTTPS.
+- Redirecionar todo acesso HTTP para HTTPS.
+- Renovar certificados automaticamente.
+- Monitorar a validade dos certificados.
+- Utilizar certificados emitidos por autoridades confiáveis.
+
+---
+
+# Resumo
+
+O HTTPS protege a comunicação entre usuários e servidores utilizando criptografia.
+
+Essa proteção é fornecida por um certificado SSL/TLS, emitido por uma autoridade certificadora como o Let's Encrypt.
+
+Em servidores Linux, o Certbot é uma das ferramentas mais utilizadas para emitir, instalar e renovar certificados automaticamente.
