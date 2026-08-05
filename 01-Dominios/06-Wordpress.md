@@ -31,7 +31,7 @@ ssh usuario@servidor.com
 Exemplo:
 
 ```bash
-ssh higor@meusite.com.br
+ssh user@meusite.com.br
 ```
 
 Após informar sua senha, você terá acesso ao terminal do servidor.
